@@ -1,3 +1,5 @@
+'use strict';
+
 require.config({
 		paths: {
 			jquery: '../components/jquery/jquery.min',
@@ -22,7 +24,7 @@ require.config({
 		}
 });
 
-require(['app'], function(app) {
+require(['app', 'angular'], function (app, angular) {
 
 	angular.element(document).ready(function() {
 		angular.bootstrap(document, [app.mainModule]);

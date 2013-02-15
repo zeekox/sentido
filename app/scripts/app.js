@@ -5,16 +5,18 @@ define([
 		'controllers/list'
 	],
 
-	function(angular, ngResource, trailService, listController) {
+	function (angular, ngResource, trailService, listController) {
+
+		'use strict';
 
 		var ngMainModule = 'project';
 
 		angular.module(ngMainModule, [trailService]).
-		config(['$routeProvider', function(routeProvider) {
-			routeProvider.
-			when('/', {controller:listController.list, templateUrl:'list.html'}).
-			when('/edit/:projectId', {controller:listController.edit, templateUrl:'detail.html'}).
-			otherwise({redirectTo:'/'});
+		config(['$routeProvider', function (routeProvider) {
+				routeProvider.
+				when('/', {controller: listController.list, templateUrl: 'list.html'}).
+				when('/edit/:projectId', {controller: listController.edit, templateUrl: 'detail.html'}).
+				otherwise({redirectTo: '/'});
 		}]);
 
 		return {
