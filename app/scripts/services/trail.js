@@ -4,6 +4,8 @@ define([
 
 		function(angular ) {
 
+			'use strict';
+			
 			var moduleName = 'mongolab';
 
 			// This is a module for cloud persistance in mongolab - https://mongolab.com
