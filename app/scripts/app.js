@@ -16,7 +16,7 @@ define([
 		config(['$routeProvider', function (routeProvider) {
 				routeProvider.
 				when('/', {controller: listController.list, templateUrl: 'list.html'}).
-				when('/edit/:projectId', {controller: listController.edit, templateUrl: 'detail.html'}).
+				when('/edit/:trailId', {controller: listController.edit, templateUrl: 'list.html'}).
 				otherwise({redirectTo: '/'});
 		}]);
 

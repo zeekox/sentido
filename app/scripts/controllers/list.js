@@ -1,41 +1,44 @@
 define([
-		'angular'
-],
-	function(angular) {
+		'angular',
+		'jquery'
+	],
+	function(angular, $) {
 
+		var ListCtrl = function (scope) {
 
-		var ListCtrl = function (scope, Trails) {
-			scope.projects = Trails.query();
-		};
+			var trailsIds = ['002','004','005','006','008','009','014','034','071','121','124'];
 
-		ListCtrl.$inject = ['$scope', 'Trails'];
+			var trails = [];
 
-		var EditCtrl = function (scope, location, routeParams, Trails) {
-			var self = this;
+			$.each(trailsIds, function(i, id){
+				$.getJSON('json/ch1086.'+id+'.json', function(data) {
 
-			Trails.get({id: routeParams.projectId}, function(project) {
-				self.original = project;
-				scope.project = new Trails(self.original);
+					var trail = [];
+
+					$.each(data, function(i, latlng) {
+						scope.nbrOfCoordinates++;
+						trail.push([latlng.lat, latlng.lng]);
+					});
+
+					trails.push({ name: id, data: trail});
+					if(trailsIds.length - 1 === i){
+						scope.trails = trails;
+						scope.center = trail[0];
+						scope.$apply();
+					}
+				});
+
 			});
-
-			scope.isClean = function() {
-				return angular.equals(self.original, scope.project);
-			};
-
-			scope.destroy = function() {
-				self.original.destroy(function() {
-					$location.path('/list');
-				});
-			};
-
-			scope.save = function() {
-				scope.project.update(function() {
-					$location.path('/');
-				});
-			};
 		};
 
-		EditCtrl.$inject = ['$scope', '$location', '$routeParams', 'Trails'];
+		ListCtrl.$inject = ['$scope'];
+
+		var EditCtrl = function (scope, location, routeParams) {
+
+			scope.center = routeParams.trailId;
+		};
+
+		EditCtrl.$inject = ['$scope', '$location', '$routeParams'];
 
 		return {
 			list: ListCtrl,
