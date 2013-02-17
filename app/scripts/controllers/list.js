@@ -1,7 +1,6 @@
 define([
 		'angular'
-	],
-
+],
 	function(angular) {
 
 
