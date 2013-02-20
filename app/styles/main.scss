@@ -1,6 +1,11 @@
 @import 'sass-bootstrap/lib/bootstrap';
+@import 'sass-bootstrap/lib/responsive';
 @import 'leaflet.css';
 
-.map, .leaflet-map-pane {
-    height: 400px;
+.map {
+	height: 500px;
+}
+
+ul.trails {
+	list-style-type: none;
 }
