@@ -7,10 +7,10 @@
       <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
     </tr>
   </thead>
-  <tbody>
-    <tr ng-repeat="trail in trails | filter:search | orderBy:'name'">
-      <td><a href="#/edit/{{trail}}" target="_blank">{{trail.name}}</a></td>
-    </tr>
+  <ul>
+    <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('SelectTrail', trail.name, trail.startOfTrail)">
+      {{trail.name}}
+    </li>
   </tbody>
 </table>
 

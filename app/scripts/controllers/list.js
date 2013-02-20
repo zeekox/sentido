@@ -4,34 +4,46 @@ define([
 	],
 	function(angular, $) {
 
-		var ListCtrl = function (scope) {
+		var ListCtrl = function (scope, route, routeParams) {
 
 			var trailsIds = ['002','004','005','006','008','009','014','034','071','121','124'];
 
-			var trails = [];
+			if(!scope.trails){
+				var trails = [];
 
-			$.each(trailsIds, function(i, id){
-				$.getJSON('json/ch1086.'+id+'.json', function(data) {
+				$.each(trailsIds, function(i, id){
+					$.getJSON('json/ch1086.'+id+'.json', function(data) {
 
-					var trail = [];
+						var trail = [];
 
-					$.each(data, function(i, latlng) {
-						scope.nbrOfCoordinates++;
-						trail.push([latlng.lat, latlng.lng]);
+						$.each(data, function(i, latlng) {
+							scope.nbrOfCoordinates++;
+							trail.push([latlng.lat, latlng.lng]);
+						});
+
+
+						trails.push({ name: id, startOfTrail: trail[0], data: trail});
+
+						if(trailsIds.length - 1 === i){
+							scope.trails = trails;
+							if(!scope.center){
+								scope.center = trail[0];
+							}
+							scope.$apply();
+						}
 					});
 
-					trails.push({ name: id, data: trail});
-					if(trailsIds.length - 1 === i){
-						scope.trails = trails;
-						scope.center = trail[0];
-						scope.$apply();
-					}
 				});
 
+			}
+			scope.$on('SelectTrail', function(event, name, startOfTrail) {
+				scope.center = startOfTrail;
+				scope.$apply();
+				return true;
 			});
 		};
 
-		ListCtrl.$inject = ['$scope'];
+		ListCtrl.$inject = ['$scope', '$route', '$routeParams'];
 
 		var EditCtrl = function (scope, location, routeParams) {
 
