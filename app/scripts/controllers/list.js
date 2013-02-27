@@ -36,7 +36,7 @@ define([
 				});
 
 			}
-			scope.$on('SelectTrail', function(event, name, startOfTrail) {
+			scope.$on('selecttrail', function(event, name, startOfTrail) {
 				scope.center = startOfTrail;
 				scope.selectedTrail = name;
 				scope.$apply();

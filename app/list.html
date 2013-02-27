@@ -8,7 +8,7 @@
     <nav>
       <ul class="trails nav nav-list">
         <li class="nav-header">Sentiers</li>
-        <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('SelectTrail', trail.name, trail.startOfTrail)" ng-class="{active: trail.name==selectedTrail}">
+        <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('selecttrail', trail.name, trail.startOfTrail)" ng-class="{active: trail.name==selectedTrail}">
           <a>{{trail.name}}</a>
         </li>
       </ul>

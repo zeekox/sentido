@@ -34,11 +34,25 @@ define([
 
 					scope.$watch('trails', function(trails) {
 
+						if(!scope.polylines){
+							scope.polylines = {};
+						}
+
 						if(trails) {
 							$.each(trails, function(i, trail){
-								L.polyline(trail.data, {color: 'red'}).addTo(map);
+								scope.polylines[trail.name] = L.polyline(trail.data, {color: 'blue'}).addTo(map);
 							});
 						}
+					});
+
+					scope.$watch('selectedTrail', function(selectedTrail, lastSelected) {
+						if(lastSelected) {
+							scope.polylines[lastSelected].setStyle({color: 'blue'});
+						}
+
+						var selectedPolyline = scope.polylines[selectedTrail];
+						selectedPolyline.bringToFront();
+						selectedPolyline.setStyle({color: 'red'});
 					});
 
 					scope.$watch('center', function(center) {
