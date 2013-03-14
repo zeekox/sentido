@@ -24,7 +24,8 @@ require.config({
 		}
 });
 
-require([ 'directives/map', 'app', 'angular'], function (dir, app, angular) {
+require([ 'directives/map', 'app', 'angular'],
+	function (dir, app, angular) {
 
 
 	angular.element(document).ready(function() {

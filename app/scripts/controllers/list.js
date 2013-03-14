@@ -1,12 +1,24 @@
 define([
 		'angular',
-		'jquery'
+		'jquery',
+		'services/geolocation'
 	],
-	function(angular, $) {
+	function(angular, $, geolocation) {
 
-		var ListCtrl = function (scope, route, routeParams) {
+		'use strict';
+
+		var ListCtrl = function (scope, route, routeParams, q) {
 
 			var trailsIds = ['002','004','005','006','008','009','014','034','071','121','124'];
+
+			var promise = geolocation.getPosition(scope, q);
+			promise.then(function(position) {
+				scope.center = [position.latitude, position.longitude];
+				scope.position = position;
+			},
+			function(reason) {
+				scope.position = reason;
+			});
 
 			if(!scope.trails){
 				var trails = [];
@@ -44,7 +56,7 @@ define([
 			});
 		};
 
-		ListCtrl.$inject = ['$scope', '$route', '$routeParams'];
+		ListCtrl.$inject = ['$scope', '$route', '$routeParams', '$q'];
 
 		var EditCtrl = function (scope, location, routeParams) {
 

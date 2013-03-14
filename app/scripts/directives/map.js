@@ -50,9 +50,11 @@ define([
 							scope.polylines[lastSelected].setStyle({color: 'blue'});
 						}
 
-						var selectedPolyline = scope.polylines[selectedTrail];
-						selectedPolyline.bringToFront();
-						selectedPolyline.setStyle({color: 'red'});
+						if(selectedTrail) {
+							var selectedPolyline = scope.polylines[selectedTrail];
+							selectedPolyline.bringToFront();
+							selectedPolyline.setStyle({color: 'red'});
+						}
 					});
 
 					scope.$watch('center', function(center) {
@@ -62,6 +64,8 @@ define([
 						center = new L.LatLng(scope.center[0], scope.center[1]);
 						var zoom = scope.zoom || 13;
 						map.setView(center, zoom);
+
+						L.marker(center).addTo(map);
 
 					});
 				}
