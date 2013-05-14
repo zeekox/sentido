@@ -7,7 +7,18 @@ define([
 
 		'use strict';
 
-		var ListCtrl = function (scope, route, routeParams, q) {
+		var ListCtrl = function (scope, route, routeParams, q, Trail) {
+
+			var test = Trail.query();
+
+			console.log(test);
+
+			scope.trails = test;
+
+			if(!scope.center){
+				scope.center = test[0];
+			}
+			scope.$apply();
 
 			var trailsIds = ['002','004','005','006','008','009','014','034','071','121','124'];
 
@@ -20,7 +31,7 @@ define([
 				scope.position = reason;
 			});
 
-			if(!scope.trails){
+			if(false && !scope.trails){
 				var trails = [];
 
 				$.each(trailsIds, function(i, id){
@@ -56,7 +67,7 @@ define([
 			});
 		};
 
-		ListCtrl.$inject = ['$scope', '$route', '$routeParams', '$q'];
+		ListCtrl.$inject = ['$scope', '$route', '$routeParams', '$q', 'Trail'];
 
 		var EditCtrl = function (scope, location, routeParams) {
 

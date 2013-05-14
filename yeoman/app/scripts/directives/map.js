@@ -40,7 +40,7 @@ define([
 
 						if(trails) {
 							$.each(trails, function(i, trail){
-								scope.polylines[trail.name] = L.polyline(trail.data, {color: 'blue'}).addTo(map);
+								scope.polylines[trail.name] = L.polyline(trail.coordinates, {color: 'blue'}).addTo(map);
 							});
 						}
 					});

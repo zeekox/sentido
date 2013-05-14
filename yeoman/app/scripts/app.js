@@ -12,7 +12,7 @@ define([
 
 		var ngMainModule = 'project';
 
-		angular.module(ngMainModule, [mapDirective]).
+		angular.module(ngMainModule, [mapDirective, trailService]).
 		config(['$routeProvider', function (routeProvider) {
 				routeProvider.
 				when('/', {controller: listController.list, templateUrl: 'list.html'}).
