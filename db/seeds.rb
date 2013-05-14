@@ -8,11 +8,15 @@
 
 # '<,'>s/\(\d*\.\d*\),\(\d\.\d*\)/Coordinate.create( lat: \1, lon: \2)/
 
-first_trail = Trail.create( name: 'Moutier', coordinates: [
-Coordinate.new( lat: 47.28485, lon: 7.371805),
-Coordinate.new( lat: 47.284369, lon: 7.371665),
-Coordinate.new( lat: 47.284223, lon: 7.371987),
-Coordinate.new( lat: 47.284092, lon: 7.372159),
-Coordinate.new( lat: 47.284092, lon: 7.373159),
-Coordinate.new( lat: 47.284392, lon: 7.374159)
-])
+Trail.delete_all
+
+first_trail = Trail.create( name: 'Moutier')
+
+first_trail.coordinates.build( lat: 47.28485, lon: 7.371805)
+first_trail.coordinates.build( lat: 47.284369, lon: 7.371665)
+first_trail.coordinates.build( lat: 47.284223, lon: 7.371987)
+first_trail.coordinates.build( lat: 47.284092, lon: 7.372159)
+first_trail.coordinates.build( lat: 47.284092, lon: 7.373159)
+first_trail.coordinates.build( lat: 47.284392, lon: 7.374159)
+
+first_trail.save!
