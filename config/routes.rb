@@ -1,4 +1,9 @@
 Sentido::Application.routes.draw do
+  get "trails/index"
+
+  get "trails/show"
+  resources :trails
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
