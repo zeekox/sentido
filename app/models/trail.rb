@@ -3,5 +3,7 @@ class Trail
 
   key :name, String
 
-  many :coordinates
+  one :coordinate
+
+  ensure_index [[:coordinate, "2dsphere"]]
 end

@@ -10,13 +10,12 @@
 
 Trail.delete_all
 
-first_trail = Trail.create( name: 'Moutier')
-
-first_trail.coordinates.build( lat: 47.28485, lon: 7.371805)
-first_trail.coordinates.build( lat: 47.284369, lon: 7.371665)
-first_trail.coordinates.build( lat: 47.284223, lon: 7.371987)
-first_trail.coordinates.build( lat: 47.284092, lon: 7.372159)
-first_trail.coordinates.build( lat: 47.284092, lon: 7.373159)
-first_trail.coordinates.build( lat: 47.284392, lon: 7.374159)
+first_trail = Trail.create( name: 'Moutier', coordinate: Coordinate.new( coordinates: [
+ [7.371805, 47.28485],
+ [7.371665, 47.284369],
+ [7.371987, 47.284223],
+ [7.372159, 47.284092],
+ [7.373159, 47.284092],
+ [7.374159, 47.284392]]))
 
 first_trail.save!

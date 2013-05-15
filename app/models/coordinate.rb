@@ -1,6 +1,8 @@
 class Coordinate
   include MongoMapper::EmbeddedDocument
 
-  key :lat, Float
-  key :lon, Float
+  key :type, String, :default => 'LineString'
+  key :coordinates, Array
+
+  #belongs_to :trail
 end
