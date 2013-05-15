@@ -4,8 +4,11 @@ var mountFolder = function (connect, dir) {
 	return connect.static(require('path').resolve(dir));
 };
 
+// To have a proxy to connect to rails web service
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
 module.exports = function (grunt) {
-	// load all grunt tasks
+	// load all grunt tasks (including grunt-connect-proxy)
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	// configurable paths
@@ -47,7 +50,8 @@ module.exports = function (grunt) {
 							return [
 								lrSnippet,
 								mountFolder(connect, '.tmp'),
-								mountFolder(connect, 'app')
+								mountFolder(connect, 'app'),
+								proxySnippet
 								];
 						}
 					}
@@ -62,7 +66,16 @@ module.exports = function (grunt) {
 								];
 						}
 					}
-				}
+				},
+				proxies: [
+					{
+						context: '/trails.js',
+						host: 'localhost',
+						port: 3000,
+						https: false,
+						changeOrigin: false
+					}
+				]
 			},
 			open: {
 				server: {
@@ -231,6 +244,7 @@ module.exports = function (grunt) {
 			'clean:server',
 			'coffee:dist',
 			'compass:server',
+			'configureProxies',
 			'livereload-start',
 			'connect:livereload',
 			'open',

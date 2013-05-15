@@ -12,7 +12,6 @@ define([
 			angular.module(moduleName, ['ngResource']).
 			factory('Trail', ['$resource', function(rsrc) {
 					var Trails = rsrc('/trails.js');
-					//var Trails = rsrc('http://localhost\\:3000/trails.js');
 
 					Trails.prototype.update = function(cb) {
 						return Trails.update({id: this._id.$oid},
