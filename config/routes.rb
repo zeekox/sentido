@@ -4,7 +4,7 @@ Sentido::Application.routes.draw do
   get "trails/show"
   resources :trails
 
-  match '/trails/around/:lon/:lat' => 'trails#around', :constraints => {:lon => /\-*\d+.\d+/ , :lat => /\-*\d+.\d+/}
+  match '/trails/around/:sw_lon/:sw_lat/:ne_lon/:ne_lat' => 'trails#around', :constraints => {:sw_lon => /\-*\d+.\d+/ , :sw_lat => /\-*\d+.\d+/, :ne_lon => /\-*\d+.\d+/ , :ne_lat => /\-*\d+.\d+/}
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

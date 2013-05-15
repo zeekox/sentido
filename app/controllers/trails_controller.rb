@@ -12,12 +12,18 @@ class TrailsController < ApplicationController
 
   def around
 
-    @lon = Float(params[:lon])
-    #@lon = 7.37180 #Float(params[:lon])
-    @lat =  Float(params[:lat])
-    #@lat =  47.28485 #Float(params[:lat])
+    @sw_lon = Float(params[:sw_lon])
+    @sw_lat =  Float(params[:sw_lat])
+    @ne_lon = Float(params[:ne_lon])
+    @ne_lat =  Float(params[:ne_lat])
 
-    @trails = Trail.where(:path => {'$near' => {  '$geometry' => { 'type' => 'Point', 'coordinates' => [@lon, @lat]}}, '$maxDistance' => 100}).all
+    @nw = [@sw_lon, @ne_lat]
+    @ne = [@ne_lon, @ne_lat]
+    @se = [@ne_lon, @sw_lat]
+    @sw = [@sw_lon, @sw_lat]
+    
+    #Polygone must be closed, so that first coordinate = last coordinate
+    @trails = Trail.where(:path => {'$geoIntersects' => {  '$geometry' => { 'type' => 'Polygon', 'coordinates' => [[ @nw, @ne, @se, @sw, @nw ]] }}}).all
 
     respond_to do |format|
       format.html 

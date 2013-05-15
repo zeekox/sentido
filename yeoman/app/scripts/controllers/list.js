@@ -9,11 +9,7 @@ define([
 
 		var ListCtrl = function (scope, route, routeParams, q, Trail) {
 
-			Trail.query({lat: 7.37180 , lon: 47.285 }, function(result) {
-				scope.trails = result;
-
-				scope.$apply();
-			});
+scope.center = [7.45766, 47.2557];
 
 			var promise = geolocation.getPosition(scope, q);
 			promise.then(function(position) {
@@ -23,12 +19,29 @@ define([
 			function(reason) {
 				scope.position = reason;
 			});
-
-
 			scope.$on('selecttrail', function(event, name) {
 				scope.selectedTrail = name;
 				scope.$apply();
 				return true;
+			});
+
+			scope.$watch('bounds', function(bounds) {
+
+				if(bounds){
+
+					var sw = bounds.getSouthWest();
+					var ne = bounds.getNorthEast();
+
+					var box = {sw_lon: sw.lng, sw_lat: sw.lat, ne_lon: ne.lng, ne_lat: ne.lat };
+
+					Trail.query(box, function(result) {
+						scope.trails = result;
+
+						scope.$apply();
+					});
+				}
+
+
 			});
 		};
 

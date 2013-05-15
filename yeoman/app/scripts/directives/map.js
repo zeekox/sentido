@@ -78,7 +78,8 @@ define([
 					});
 
 					map.on('move', function() {
-						console.log(map.getBounds());
+						scope.bounds = map.getBounds();
+						scope.$apply();
 					});
 				}
 			};
