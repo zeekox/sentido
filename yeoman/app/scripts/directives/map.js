@@ -34,13 +34,21 @@ define([
 
 					scope.$watch('trails', function(trails) {
 
+
 						if(!scope.polylines){
 							scope.polylines = {};
 						}
 
 						if(trails) {
 							$.each(trails, function(i, trail){
-								scope.polylines[trail.name] = L.polyline(trail.coordinates, {color: 'blue'}).addTo(map);
+								var geoJSON = L.geoJson(trail.path, {color: 'blue',
+										onEachFeature: function (feature, layer) {
+											if(!scope.center) {
+												scope.center = feature.coordinates[0];
+											}
+								}});
+								scope.polylines[trail.name] = geoJSON.addTo(map);
+
 							});
 						}
 					});
@@ -61,12 +69,16 @@ define([
 						if (center === undefined){return;}
 
 						// Center of the map
-						center = new L.LatLng(scope.center[0], scope.center[1]);
+						center =  new L.LatLng(scope.center[1], scope.center[0]);
 						var zoom = scope.zoom || 13;
 						map.setView(center, zoom);
 
 						L.marker(center).addTo(map);
 
+					});
+
+					map.on('move', function() {
+						console.log(map.getBounds());
 					});
 				}
 			};
