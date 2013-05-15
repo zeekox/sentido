@@ -6,23 +6,11 @@ define([
 
 			'use strict';
 
-			var moduleName = 'mongolab';
+			var moduleName = 'trailService';
 
-			// This is a module for cloud persistance in mongolab - https://mongolab.com
 			angular.module(moduleName, ['ngResource']).
 			factory('Trail', ['$resource', function(rsrc) {
-					var Trails = rsrc('/trails/around/:lat/:lon.js', {lat: '@lat', id: '@lon'});
-
-					Trails.prototype.update = function(cb) {
-						return Trails.update({id: this._id.$oid},
-							angular.extend({}, this, {_id:undefined}), cb);
-					};
-
-					Trails.prototype.destroy = function(cb) {
-						return Trails.remove({id: this._id.$oid}, cb);
-					};
-
-					return Trails;
+					return rsrc('/trails/around/:lat/:lon.js', {lat: '@lat', id: '@lon'});
 			}]);
 
 			return moduleName;
