@@ -10,7 +10,9 @@
 
 Trail.delete_all
 
-first_trail = Trail.create( name: 'Moutier', coordinate: Coordinate.new( coordinates: [
+first_trail = Trail.create( 
+  name: 'Moutier', 
+  path: Path.new( coordinates: [
  [7.371805, 47.28485],
  [7.371665, 47.284369],
  [7.371987, 47.284223],
