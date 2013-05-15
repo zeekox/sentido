@@ -9,7 +9,7 @@ define([
 
 		var ListCtrl = function (scope, route, routeParams, q, Trail) {
 
-			var test = Trail.query();
+			var test = Trail.query({lat: 7.37180 , lon: 47.285 });
 
 			console.log(test);
 

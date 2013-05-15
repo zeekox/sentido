@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 				},
 				proxies: [
 					{
-						context: '/trails.js',
+						context: '/trails',
 						host: 'localhost',
 						port: 3000,
 						https: false,

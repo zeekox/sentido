@@ -11,7 +11,7 @@ define([
 			// This is a module for cloud persistance in mongolab - https://mongolab.com
 			angular.module(moduleName, ['ngResource']).
 			factory('Trail', ['$resource', function(rsrc) {
-					var Trails = rsrc('/trails.js');
+					var Trails = rsrc('/trails/around/:lat/:lon.js', {lat: '@lat', id: '@lon'});
 
 					Trails.prototype.update = function(cb) {
 						return Trails.update({id: this._id.$oid},
