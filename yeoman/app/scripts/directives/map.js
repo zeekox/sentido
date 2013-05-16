@@ -42,15 +42,10 @@ define([
 
 						if(trails) {
 							$.each(trails, function(i, trail){
-								var geoJSON = L.geoJson(trail.path, {color: 'blue',
-										onEachFeature: function (feature, layer) {
-											if(!scope.center) {
-												scope.center = feature.coordinates[0];
-											}
-								}});
+								var geoJSON = L.geoJson(trail.path, {color: 'blue'});
 
 								if(!(trail.id in cachedLayers)) {
-									cachedLayers[trail.id] = geoJSON;
+									cachedLayers[trail.id] = { trail: trail, layer: geoJSON };
 									geoJSON.addTo(map);
 									//console.log(Object.keys(cachedLayers).length);
 								}
@@ -60,14 +55,17 @@ define([
 
 					scope.$watch('selectedTrail', function(selectedTrail, lastSelected) {
 						if(lastSelected) {
-							cachedLayers[lastSelected].setStyle({color: 'blue'});
+							cachedLayers[lastSelected].layer.setStyle({color: 'blue'});
 						}
 
 						if(selectedTrail) {
-							var selectedPolyline = cachedLayers[selectedTrail];
-							selectedPolyline.bringToFront();
-							selectedPolyline.setStyle({color: 'red'});
+							var selectedLayer = cachedLayers[selectedTrail].layer;
+							selectedLayer.bringToFront();
+							selectedLayer.setStyle({color: 'red'});
+						
+							scope.center = cachedLayers[selectedTrail].trail.path.coordinates[0];
 						}
+
 					});
 
 					scope.$watch('center', function(center) {
@@ -77,8 +75,6 @@ define([
 						center =  new L.LatLng(scope.center[1], scope.center[0]);
 						var zoom = scope.zoom || 13;
 						map.setView(center, zoom);
-
-						L.marker(center).addTo(map);
 
 					});
 
