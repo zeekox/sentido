@@ -9,7 +9,8 @@ define([
 
 		var ListCtrl = function (scope, route, routeParams, q, Trail) {
 
-scope.center = [7.45766, 47.2557];
+			// ensure center set
+			scope.center = [7.45766, 47.2557];
 
 			var promise = geolocation.getPosition(scope, q);
 			promise.then(function(position) {
@@ -20,8 +21,8 @@ scope.center = [7.45766, 47.2557];
 				scope.position = reason;
 			});
 
-			scope.$on('selecttrail', function(e, name) {
-				scope.selectedTrail = name;
+			scope.$on('selecttrail', function(e, id) {
+				scope.selectedTrail = id;
 				return true;
 			});
 
@@ -38,8 +39,6 @@ scope.center = [7.45766, 47.2557];
 						scope.trails = result;
 					});
 				}
-
-
 			});
 		};
 

@@ -31,12 +31,13 @@ define([
 							attribution: '&copy; OpenStreetMap'
 					}).addTo(map);
 
+					var cachedLayers = {};
+
 
 					scope.$watch('trails', function(trails) {
 
-
-						if(!scope.polylines){
-							scope.polylines = {};
+						if(!cachedLayers){
+							cachedLayers = {};
 						}
 
 						if(trails) {
@@ -47,19 +48,23 @@ define([
 												scope.center = feature.coordinates[0];
 											}
 								}});
-								scope.polylines[trail.name] = geoJSON.addTo(map);
 
+								if(!(trail.id in cachedLayers)) {
+									cachedLayers[trail.id] = geoJSON;
+									geoJSON.addTo(map);
+									//console.log(Object.keys(cachedLayers).length);
+								}
 							});
 						}
 					});
 
 					scope.$watch('selectedTrail', function(selectedTrail, lastSelected) {
 						if(lastSelected) {
-							scope.polylines[lastSelected].setStyle({color: 'blue'});
+							cachedLayers[lastSelected].setStyle({color: 'blue'});
 						}
 
 						if(selectedTrail) {
-							var selectedPolyline = scope.polylines[selectedTrail];
+							var selectedPolyline = cachedLayers[selectedTrail];
 							selectedPolyline.bringToFront();
 							selectedPolyline.setStyle({color: 'red'});
 						}

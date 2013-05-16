@@ -10,7 +10,7 @@
       <div ng-bind="position.latitude"></div>
       <ul class="trails nav nav-list">
         <li class="nav-header">Sentiers</li>
-        <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('selecttrail', trail.name)" ng-class="{active: trail.name==selectedTrail}">
+        <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('selecttrail', trail.id)" ng-class="{active: trail.id==selectedTrail}">
           <a>{{trail.name}}</a>
         </li>
       </ul>
