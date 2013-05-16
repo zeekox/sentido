@@ -32,22 +32,28 @@ define([
 					}).addTo(map);
 
 					var cachedLayers = {};
-
+					scope.displayed_trails = 0;
+					scope.cached_trails = 0;
 
 					scope.$watch('trails', function(trails) {
-
-						if(!cachedLayers){
-							cachedLayers = {};
-						}
+					
+						scope.displayed_trails = 0;
 
 						if(trails) {
 							$.each(trails, function(i, trail){
 								var geoJSON = L.geoJson(trail.path, {color: 'blue'});
 
+								scope.displayed_trails = trails.length;
+
 								if(!(trail.id in cachedLayers)) {
 									cachedLayers[trail.id] = { trail: trail, layer: geoJSON };
 									geoJSON.addTo(map);
-									//console.log(Object.keys(cachedLayers).length);
+
+									if(!scope.cached_trails){
+										scope.cached_trails = 0;
+									}
+
+									scope.cached_trails++;
 								}
 							});
 						}
