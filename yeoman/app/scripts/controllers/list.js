@@ -19,13 +19,13 @@ scope.center = [7.45766, 47.2557];
 			function(reason) {
 				scope.position = reason;
 			});
-			scope.$on('selecttrail', function(event, name) {
+
+			scope.$on('selecttrail', function(e, name) {
 				scope.selectedTrail = name;
-				scope.$apply();
 				return true;
 			});
 
-			scope.$watch('bounds', function(bounds) {
+			scope.$on('newBounds', function(e, bounds) {
 
 				if(bounds){
 
@@ -36,8 +36,6 @@ scope.center = [7.45766, 47.2557];
 
 					Trail.query(box, function(result) {
 						scope.trails = result;
-
-						scope.$apply();
 					});
 				}
 
