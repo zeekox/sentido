@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd" version="1.0" creator="Swiss Map">
+  <rte>
+    <name>Nouveau6 on GPSies.com</name>
+    <number>0</number>
+    <rtept lat="47.339877057487" lon="7.352273436589">
+      <ele>571.078000000000</ele>
+      <time>2009-04-26T09:13:05Z</time>
+    </rtept>
+    <rtept lat="47.339786816227" lon="7.351876629912">
+      <ele>572.673000000000</ele>
+      <time>2009-04-26T09:13:09Z</time>
+    </rtept>
+    <rtept lat="47.339588820679" lon="7.351718171287">
+      <ele>573.131000000000</ele>
+      <time>2009-04-26T09:13:10Z</time>
+    </rtept>
+    <rtept lat="47.339372846138" lon="7.351572974825">
+      <ele>574.213000000000</ele>
+      <time>2009-04-26T09:13:25Z</time>
+    </rtept>
+    <rtept lat="47.339327604371" lon="7.351215794264">
+      <ele>572.740000000000</ele>
+      <time>2009-04-26T09:13:37Z</time>
+    </rtept>
+    <rtept lat="47.339309555498" lon="7.351136433996">
+      <ele>572.757000000000</ele>
+      <time>2009-04-26T09:13:40Z</time>
+    </rtept>
+    <rtept lat="47.339237520271" lon="7.351030699130">
+      <ele>569.690000000000</ele>
+      <time>2009-04-26T09:13:45Z</time>
+    </rtept>
+    <rtept lat="47.339192508249" lon="7.350977846577">
+      <ele>568.413000000000</ele>
+      <time>2009-04-26T09:13:48Z</time>
+    </rtept>
+    <rtept lat="47.339138501831" lon="7.350925008895">
+      <ele>567.055000000000</ele>
+      <time>2009-04-26T09:13:51Z</time>
+    </rtept>
+    <rtept lat="47.339048457535" lon="7.350792841138">
+      <ele>566.235000000000</ele>
+      <time>2009-04-26T09:13:55Z</time>
+    </rtept>
+    <rtept lat="47.339003395024" lon="7.350673831241">
+      <ele>565.595000000000</ele>
+      <time>2009-04-26T09:13:59Z</time>
+    </rtept>
+    <rtept lat="47.338805256266" lon="7.350330138444">
+      <ele>562.699000000000</ele>
+      <time>2009-04-26T09:14:14Z</time>
+    </rtept>
+    <rtept lat="47.338733230419" lon="7.350237637145">
+      <ele>561.664000000000</ele>
+      <time>2009-04-26T09:14:18Z</time>
+    </rtept>
+    <rtept lat="47.338697131269" lon="7.350078919091">
+      <ele>560.680000000000</ele>
+      <time>2009-04-26T09:14:24Z</time>
+    </rtept>
+    <rtept lat="47.338409118262" lon="7.349828000088">
+      <ele>560.522000000000</ele>
+      <time>2009-04-26T09:14:36Z</time>
+    </rtept>
+    <rtept lat="47.338382074058" lon="7.349748656634">
+      <ele>560.444000000000</ele>
+      <time>2009-04-26T09:14:38Z</time>
+    </rtept>
+    <rtept lat="47.338094243914" lon="7.349735904667">
+      <ele>559.532000000000</ele>
+      <time>2009-04-26T09:14:50Z</time>
+    </rtept>
+    <rtept lat="47.338067107820" lon="7.349537479902">
+      <ele>556.768000000000</ele>
+      <time>2009-04-26T09:15:00Z</time>
+    </rtept>
+    <rtept lat="47.337914223873" lon="7.349564197715">
+      <ele>558.069000000000</ele>
+      <time>2009-04-26T09:15:09Z</time>
+    </rtept>
+    <rtept lat="47.337878246374" lon="7.349564257758">
+      <ele>558.234000000000</ele>
+      <time>2009-04-26T09:15:10Z</time>
+    </rtept>
+    <rtept lat="47.337860216787" lon="7.349511362729">
+      <ele>557.249000000000</ele>
+      <time>2009-04-26T09:15:14Z</time>
+    </rtept>
+    <rtept lat="47.337716255708" lon="7.349445446909">
+      <ele>556.266000000000</ele>
+      <time>2009-04-26T09:15:23Z</time>
+    </rtept>
+    <rtept lat="47.337635255213" lon="7.349379426152">
+      <ele>555.698000000000</ele>
+      <time>2009-04-26T09:15:28Z</time>
+    </rtept>
+    <rtept lat="47.337437286842" lon="7.349260676652">
+      <ele>556.964000000000</ele>
+      <time>2009-04-26T09:15:38Z</time>
+    </rtept>
+    <rtept lat="47.337401309339" lon="7.349260736899">
+      <ele>557.251000000000</ele>
+      <time>2009-04-26T09:15:40Z</time>
+    </rtept>
+    <rtept lat="47.337113356036" lon="7.349089214868">
+      <ele>558.177000000000</ele>
+      <time>2009-04-26T09:15:54Z</time>
+    </rtept>
+    <rtept lat="47.336924309754" lon="7.348877835281">
+      <ele>558.993000000000</ele>
+      <time>2009-04-26T09:16:03Z</time>
+    </rtept>
+    <rtept lat="47.336834304245" lon="7.348798600494">
+      <ele>560.167000000000</ele>
+      <time>2009-04-26T09:16:09Z</time>
+    </rtept>
+    <rtept lat="47.336807197473" lon="7.348639873894">
+      <ele>557.981000000000</ele>
+      <time>2009-04-26T09:16:15Z</time>
+    </rtept>
+    <rtept lat="47.336735159906" lon="7.348534147356">
+      <ele>558.569000000000</ele>
+      <time>2009-04-26T09:16:16Z</time>
+    </rtept>
+  </rte>
+</gpx>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd" version="1.0" creator="Swiss Map">
+  <rte>
+    <name>14 on GPSies.com</name>
+    <number>0</number>
+    <rtept lat="47.348272705761" lon="7.357659263685">
+      <ele>473.386000000000</ele>
+      <time>2009-04-20T08:30:10Z</time>
+    </rtept>
+    <rtept lat="47.348155667785" lon="7.357500635320"/>
+    <rtept lat="47.348065584679" lon="7.357302265161">
+      <ele>477.290000000000</ele>
+      <time>2009-04-20T08:30:31Z</time>
+    </rtept>
+    <rtept lat="47.347993443195" lon="7.357037699302"/>
+    <rtept lat="47.347975314076" lon="7.356839220229"/>
+    <rtept lat="47.348020145055" lon="7.356640644546">
+      <ele>479.446000000000</ele>
+      <time>2009-04-20T08:30:54Z</time>
+    </rtept>
+    <rtept lat="47.347993058567" lon="7.356495114468"/>
+    <rtept lat="47.347911996376" lon="7.356336434000"/>
+    <rtept lat="47.347714092407" lon="7.356297038061">
+      <ele>480.834000000000</ele>
+      <time>2009-04-20T08:31:15Z</time>
+    </rtept>
+    <rtept lat="47.347543180899" lon="7.356270834423"/>
+    <rtept lat="47.347390248635" lon="7.356231369552">
+      <ele>483.843000000000</ele>
+      <time>2009-04-20T08:31:33Z</time>
+    </rtept>
+    <rtept lat="47.347318208792" lon="7.356112378188">
+      <ele>484.587000000000</ele>
+      <time>2009-04-20T08:31:41Z</time>
+    </rtept>
+    <rtept lat="47.347111044868" lon="7.355702457823"/>
+    <rtept lat="47.347002874610" lon="7.355371787300">
+      <ele>485.497000000000</ele>
+      <time>2009-04-20T08:32:03Z</time>
+    </rtept>
+    <rtept lat="47.346876743429" lon="7.355080846795">
+      <ele>486.231000000000</ele>
+      <time>2009-04-20T08:32:22Z</time>
+    </rtept>
+    <rtept lat="47.346723686074" lon="7.354869350830">
+      <ele>486.433000000000</ele>
+      <time>2009-04-20T08:32:41Z</time>
+    </rtept>
+    <rtept lat="47.346525627691" lon="7.354618226614">
+      <ele>488.765000000000</ele>
+      <time>2009-04-20T08:32:59Z</time>
+    </rtept>
+  </rte>
+</gpx>
