@@ -13,7 +13,7 @@ scope.center = [7.45766, 47.2557];
 
 			var promise = geolocation.getPosition(scope, q);
 			promise.then(function(position) {
-				scope.center = [position.latitude, position.longitude];
+				scope.center = [position.longitude, position.latitude];
 				scope.position = position;
 			},
 			function(reason) {
