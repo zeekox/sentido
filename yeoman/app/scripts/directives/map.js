@@ -68,8 +68,11 @@ define([
 							var selectedLayer = cachedLayers[selectedTrail].layer;
 							selectedLayer.bringToFront();
 							selectedLayer.setStyle({color: 'red'});
-						
-							scope.center = cachedLayers[selectedTrail].trail.path.coordinates[0];
+	
+							var bounds = selectedLayer.getBounds();
+							var zoom = map.getBoundsZoom(bounds);
+
+							map.setView(bounds.getCenter(), zoom-2);
 						}
 
 					});
