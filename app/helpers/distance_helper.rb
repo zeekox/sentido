@@ -85,4 +85,13 @@ module DistanceHelper
     total.round(0)
 
   end
+
+  def self.to_display(distance)
+    if (distance < 1000)
+      "#{distance}m"
+    else
+      km = distance/1000.0
+      "#{km.round(1)}km"
+    end
+  end
 end

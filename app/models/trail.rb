@@ -3,8 +3,10 @@ class Trail
 
   key :name, String
 
-  key :length, Float
+  key :l_val, Float
 
+  key :length, String
+  
   one :path
 
   ensure_index [[:path, "2dsphere"]]

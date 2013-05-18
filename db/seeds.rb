@@ -14,12 +14,16 @@ Dir.glob(file_loc + '/*.gpx') do |gpx|
 
   coordinates = GpxHelper.parse_gpx(gpx)
 
-  length = DistanceHelper.compute_total(coordinates)
+  l_val = DistanceHelper.compute_total(coordinates)
   
-  puts "#{gpx} #{coordinates.length} coordinates, length #{length}m"
+  length = DistanceHelper.to_display(l_val)
+
+  puts "#{gpx} #{coordinates.length} coordinates, length #{length}"
+
 
   Trail.create( name: gpx.gsub(/#{file_loc}\/(.*)\.gpx/, '\\1'),
                length: length,
+               l_val: l_val,
                path: Path.new( coordinates: coordinates)).save!
 
 
