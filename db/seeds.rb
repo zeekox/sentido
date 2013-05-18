@@ -11,20 +11,15 @@ file_loc = 'db/gpx'
 
 Dir.glob(file_loc + '/*.gpx') do |gpx|
 
-  coordinates = []
+  coordinates = GpxHelper.parse_gpx(gpx)
 
-  File.open(gpx, "r"){ |file| 
+  puts "#{gpx} #{coordinates.length} coordinates"
 
-    coordinates = GpxHelper.parse_gpx(file)
-
-    puts "#{gpx} #{coordinates.length} coordinates"
-    
-    Trail.create( name: gpx.gsub(/#{file_loc}\/(.*)\.gpx/, '\\1'),
-                 path: Path.new( coordinates: coordinates)).save!
+  Trail.create( name: gpx.gsub(/#{file_loc}\/(.*)\.gpx/, '\\1'),
+               path: Path.new( coordinates: coordinates)).save!
 
 
-    count += 1
-  }
+               count += 1
 end
 
 puts "Inserted #{count} trails"
