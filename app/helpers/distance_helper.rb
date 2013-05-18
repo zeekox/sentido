@@ -82,7 +82,7 @@ module DistanceHelper
       lat = ll[1]
     }
 
-    total
+    total.round(0)
 
   end
 end

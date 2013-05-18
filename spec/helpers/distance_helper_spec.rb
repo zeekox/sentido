@@ -20,6 +20,9 @@ describe DistanceHelper do
 
       one_way.should eq back
     end
+    it "should compute zero for same coordinates" do
+      DistanceHelper.compute(4.695625, 48.398152, 4.695625, 48.398152).should eq 0
+    end
   end
 
   describe "#compute_total" do
@@ -31,7 +34,7 @@ describe DistanceHelper do
 
       compute_total_result = DistanceHelper.compute_total([one, two])
 
-      compute_total_result.should eq compute_result
+      compute_total_result.should eq compute_result.round(0)
     end
 
     it "should compute the same as compute for two coordinates" do
