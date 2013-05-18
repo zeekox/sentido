@@ -21,4 +21,28 @@ describe DistanceHelper do
       one_way.should eq back
     end
   end
+
+  describe "#compute_total" do
+    it "should compute the same as compute for two coordinates" do
+      one = [4.6, 48.3]
+      two = [4.7, 48.4]
+
+      compute_result = DistanceHelper.compute(one[0], one[1], two[0], two[1])
+
+      compute_total_result = DistanceHelper.compute_total([one, two])
+
+      compute_total_result.should eq compute_result
+    end
+
+    it "should compute the same as compute for two coordinates" do
+      one = [4.6, 48.3]
+      two = [4.7, 48.4]
+
+      compute_one_way_result = DistanceHelper.compute_total([one, two])
+      compute_one_way_and_return_result = DistanceHelper.compute_total([one, two, one])
+
+      compute_one_way_and_return_result.should eq(compute_one_way_result * 2)
+    end
+
+  end
 end

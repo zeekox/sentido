@@ -42,6 +42,8 @@ Rmeters = Rkm * 1000    # radius in meters
 given two lon/lat points, compute the distance between the two points using the haversine formula
 =end
 module DistanceHelper
+
+
   def self.compute(lon1, lat1, lon2, lat2)
 
     dlon = lon2 - lon1
@@ -61,9 +63,26 @@ module DistanceHelper
     #dMi = Rmiles * c          # delta between the two points in miles
     #dKm = Rkm * c             # delta in kilometers
     #dFeet = Rfeet * c         # delta in feet
-    
+
     Rmeters * c     # delta in meters
   end
 
+  def self.compute_total(lonlats)
 
+    total = 0.0
+    lon = 0.0
+    lat = 0.0
+
+    lonlats.each_with_index { |ll, idx|
+      if (idx != 0)
+        total += compute(lon, lat, ll[0], ll[1])
+      end
+
+      lon = ll[0]
+      lat = ll[1]
+    }
+
+    total
+
+  end
 end
