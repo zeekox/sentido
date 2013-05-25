@@ -18,7 +18,9 @@ define([
 				transclude: true,
 				link: function postLink(scope, element, attrs) {
 					var mapElement = element[0];
-					var map = new L.Map(mapElement);
+					var map = new L.Map(mapElement, {attributionControl: true});
+
+					L.control.scale({imperial: false}).addTo(map);
 
 					var landscapeTile = 'http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png';
 
