@@ -11,6 +11,9 @@ define([
 		var moduleName = 'map';
 		var mapModule = angular.module(moduleName, []);
 
+		var startIcon = new L.DivIcon({html: '>'});
+		var endIcon = new L.DivIcon({html: 'x'});
+
 		mapModule.directive(moduleName, function factory() {
 			var directiveDefinitionObject = {
 				restrict: 'C',
@@ -38,16 +41,25 @@ define([
 					scope.cached_trails = 0;
 
 					scope.$watch('trails', function(trails) {
-					
+
 						scope.displayed_trails = 0;
 
 						if(trails) {
 							$.each(trails, function(i, trail){
-								var geoJSON = L.geoJson(trail.path, {color: 'blue'});
 
 								scope.displayed_trails = trails.length;
 
 								if(!(trail.id in cachedLayers)) {
+									var geoJSON = L.geoJson(trail.path, {color: 'blue'});
+
+									geoJSON.on('click', function(){
+										scope.selectedTrail = trail.id;
+										scope.$apply();
+									});
+
+									//L.marker(getStart(trail), {icon: startIcon }).addTo(map);
+									//L.marker(getEnd(trail), {icon: endIcon }).addTo(map);
+									
 									cachedLayers[trail.id] = { trail: trail, layer: geoJSON };
 									geoJSON.addTo(map);
 
@@ -61,6 +73,16 @@ define([
 						}
 					});
 
+					function getStart (trail) {
+						var lonLat = trail.path.coordinates[0];
+						return [lonLat[1], lonLat[0]];
+					}
+
+					function getEnd (trail) {
+						var lonLat = trail.path.coordinates[trail.path.coordinates.length - 1];
+						return [lonLat[1], lonLat[0]];
+					}
+
 					scope.$watch('selectedTrail', function(selectedTrail, lastSelected) {
 						if(lastSelected) {
 							cachedLayers[lastSelected].layer.setStyle({color: 'blue'});
@@ -70,7 +92,7 @@ define([
 							var selectedLayer = cachedLayers[selectedTrail].layer;
 							selectedLayer.bringToFront();
 							selectedLayer.setStyle({color: 'red'});
-	
+
 							var bounds = selectedLayer.getBounds();
 							var zoom = map.getBoundsZoom(bounds);
 
