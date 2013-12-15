@@ -2,7 +2,8 @@
 
 angular.module('yeoman10App', [
   'ngCookies',
-  'ngSanitize'
+  'ngSanitize',
+  'ngRoute'
 ])
   .config(function ($routeProvider) {
     $routeProvider
