@@ -1,20 +1,19 @@
 define([
-		'angular',
-		'ngRoute',
-		'ngResource',
-		'services/trail',
-		'controllers/list',
+		'angularAMD',
+               'services/trail',
+               'controllers/list',
 		'directives/map'
 	],
 
-	function (angular, ngRoute, ngResource, trailService, listController, mapDirective) {
+	function (angularAMD, mapDirective, trailService) {
 
 		'use strict';
 
-		var ngMainModule = 'project';
 
-		angular.module(ngMainModule, [mapDirective, trailService]).
-		config(function ($routeProvider) {
+var app =		angular.module('sentido', [mapDirective, trailService]);
+
+angularAMD.bootstrap(app);
+		app.config(function ($routeProvider) {
 				$routeProvider.
 				when('/', {controller: listController.list, templateUrl: 'list.html'}).
 				//when('/edit/:trailId', { controller: listController.list, templateUrl: 'list.html'}).

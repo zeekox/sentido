@@ -7,7 +7,9 @@ require.config({
 			underscore: '../bower_components/underscore/underscore',
 			angular: '../bower_components/angular/angular',
 			ngRoute: '../bower_components/angular-route/angular-route',
-			ngResource: '../bower_components/angular-resource/angular-resource'
+			ngResource: '../bower_components/angular-resource/angular-resource',
+			angularAMD: '../bower_components/angularAMD/angularAMD',
+			ngload: '../bower_components/angularAMD/ngload'
 		},
 		shim: {
 			'leaflet': {
@@ -24,17 +26,22 @@ require.config({
 			'ngRoute': {
 				exports: 'angular',
 				deps: ['angular']
-			}
+			},
 
-		}
+		'angularAMD': ['angular', 'ngResource', 'ngRoute'],
+        'ngload': ['angularAMD']
+    },    
+    deps: ['app'] 
 });
 
-require([ 'directives/map', 'app', 'angular'],
-	function (dir, app, angular) {
+/*require([ 'angularAMD'],
+	function (angularAMD) {
 
 
 	angular.element(document).ready(function() {
-		angular.bootstrap(document, [app.mainModule]);
+
+		angularAMD.bootstrap(document, ['project']);
 	});
 
 });
+*/
