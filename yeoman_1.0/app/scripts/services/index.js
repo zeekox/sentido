@@ -1,0 +1,4 @@
+define([
+     './geolocation',
+     './trail'
+], function () {});

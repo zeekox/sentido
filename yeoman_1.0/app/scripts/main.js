@@ -7,7 +7,8 @@ require.config({
 			underscore: '../bower_components/underscore/underscore',
 			angular: '../bower_components/angular/angular',
 			ngRoute: '../bower_components/angular-route/angular-route',
-			ngResource: '../bower_components/angular-resource/angular-resource'
+			ngResource: '../bower_components/angular-resource/angular-resource',
+			domReady: '../bower_components/requirejs-domready/domReady'
 		},
 		shim: {
 			'leaflet': {
@@ -17,18 +18,20 @@ require.config({
 				exports: 'angular',
 				deps: ['jquery']
 			},
-			'ngResource': {
+			'ngRoute': {
 				exports: 'angular',
 				deps: ['angular']
 			},
-			'ngRoute': {
+			'ngResource': {
 				exports: 'angular',
 				deps: ['angular']
 			}
 
-		}
+		},
+		// kick start application
+		deps: ['./bootstrap']
 });
-
+/*
 require([ 'directives/map', 'app', 'angular'],
 	function (dir, app, angular) {
 
@@ -38,3 +41,4 @@ require([ 'directives/map', 'app', 'angular'],
 	});
 
 });
+*/

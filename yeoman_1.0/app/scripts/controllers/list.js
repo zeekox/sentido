@@ -1,58 +1,45 @@
 define([
-		'angular',
-		'jquery',
+		'./module',
 		'services/geolocation'
 	],
-	function(angular, $, geolocation) {
-
+	function (controllers, geolocation) {  
 		'use strict';
+		controllers.controller('ListCtrl', ['$scope','$q', 'trail', function ($scope, q, Trail) {
 
-		var ListCtrl = function (scope, route, routeParams, q, Trail) {
+				// ensure center set
+				$scope.center = [7.45766, 47.2557];
 
-			// ensure center set
-			scope.center = [7.45766, 47.2557];
-
-			var promise = geolocation.getPosition(scope, q);
-			promise.then(function(position) {
-				scope.center = [position.longitude, position.latitude];
-				scope.position = position;
-			},
-			function(reason) {
-				scope.position = reason;
-			});
-
-			scope.$on('selecttrail', function(e, id) {
-				scope.selectedTrail = id;
-				return true;
-			});
-
-			scope.$on('newBounds', function(e, bounds) {
-
-				if(bounds){
-
-					var sw = bounds.getSouthWest();
-					var ne = bounds.getNorthEast();
-
-					var box = {sw_lon: sw.lng, sw_lat: sw.lat, ne_lon: ne.lng, ne_lat: ne.lat };
-
-					Trail.query(box, function(result) {
-						scope.trails = result;
+				if(q){
+					var promise = geolocation.getPosition($scope, q);
+					promise.then(function(position) {
+						$scope.center = [position.longitude, position.latitude];
+						$scope.position = position;
+					},
+					function(reason) {
+						$scope.position = reason;
 					});
 				}
-			});
-		};
 
-		ListCtrl.$inject = ['$scope', '$route', '$routeParams', '$q', 'Trail'];
+				$scope.$on('selecttrail', function(e, id) {
+					$scope.selectedTrail = id;
+					return true;
+				});
 
-		var EditCtrl = function (scope, location, routeParams) {
+				$scope.$on('newBounds', function(e, bounds) {
 
-			scope.center = routeParams.trailId;
-		};
+					if(bounds){
 
-		EditCtrl.$inject = ['$scope', '$location', '$routeParams'];
+						var sw = bounds.getSouthWest();
+						var ne = bounds.getNorthEast();
 
-		return {
-			list: ListCtrl,
-			edit: EditCtrl
-		};
+						var box = {sw_lon: sw.lng, sw_lat: sw.lat, ne_lon: ne.lng, ne_lat: ne.lat };
+
+						if(Trail){
+							Trail.query(box, function(result) {
+								$scope.trails = result;
+							});
+						}
+					}
+				});
+		}]);
 });
