@@ -3,12 +3,12 @@ define([
 		'leaflet',
 		'jquery'
 	],
-	function (directives, L) {
+	function (directives, L, $) {
 
 		'use strict';
 		directives.directive('map', [
 
-				function (angular, $) {
+				function () {
 
 					var startIcon = new L.DivIcon({html: '>'});
 					var endIcon = new L.DivIcon({html: 'x'});
