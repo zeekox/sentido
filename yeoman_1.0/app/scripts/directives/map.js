@@ -88,13 +88,15 @@ define([
 
 								if(selectedTrail) {
 									var selectedLayer = cachedLayers[selectedTrail].layer;
-									selectedLayer.bringToFront();
-									selectedLayer.setStyle({color: 'red'});
+									if(selectedLayer){
+										selectedLayer.bringToFront();
+										selectedLayer.setStyle({color: 'red'});
 
-									var bounds = selectedLayer.getBounds();
-									var zoom = map.getBoundsZoom(bounds);
+										var bounds = selectedLayer.getBounds();
+										var zoom = map.getBoundsZoom(bounds);
 
-									map.setView(bounds.getCenter(), zoom-2);
+										map.setView(bounds.getCenter(), zoom-2);
+									}
 								}
 
 							});
@@ -118,4 +120,4 @@ define([
 				}
 		]);
 	}
-	);
+);
