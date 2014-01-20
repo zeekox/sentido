@@ -1,13 +1,19 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
-//@import 'sass-bootstrap/lib/responsive';
 @import 'leaflet.css';
 
+ul.trails, .map {
+	display: inline-block
+}
+
 .map {
+	vertical-align: top;
 	height: 500px;
+	width: 75%;
 }
 
 ul.trails {
 	list-style-type: none;
+	width: 20%;
 }
