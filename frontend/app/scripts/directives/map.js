@@ -10,14 +10,14 @@ define([
 
 				function () {
 
-					var startIcon = new L.DivIcon({html: '>'});
-					var endIcon = new L.DivIcon({html: 'x'});
+					//var startIcon = new L.DivIcon({html: '>'});
+					//var endIcon = new L.DivIcon({html: 'x'});
 
 					var directiveDefinitionObject = {
 						restrict: 'C',
 						replace: false,
 						transclude: true,
-						link: function postLink(scope, element, attrs) {
+						link: function postLink(scope, element) {
 							var mapElement = element[0];
 							var map = new L.Map(mapElement, {attributionControl: true});
 
@@ -71,7 +71,7 @@ define([
 								}
 							});
 
-							function getStart (trail) {
+							/*function getStart (trail) {
 								var lonLat = trail.path.coordinates[0];
 								return [lonLat[1], lonLat[0]];
 							}
@@ -79,7 +79,7 @@ define([
 							function getEnd (trail) {
 								var lonLat = trail.path.coordinates[trail.path.coordinates.length - 1];
 								return [lonLat[1], lonLat[0]];
-							}
+							}*/
 
 							scope.$watch('selectedTrail', function(selectedTrail, lastSelected) {
 								if(lastSelected) {

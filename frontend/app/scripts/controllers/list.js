@@ -2,7 +2,7 @@ define([
 		'./module',
 		'services/geolocation'
 	],
-	function (controllers, geolocation) {  
+	function (controllers, geolocation) {
 		'use strict';
 		controllers.controller('ListCtrl', ['$scope','$q', 'trail', function ($scope, q, Trail) {
 

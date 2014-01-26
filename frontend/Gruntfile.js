@@ -6,7 +6,6 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
-					
 // To have a proxy to connect to rails web service
 var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
 
@@ -76,25 +75,25 @@ module.exports = function (grunt) {
             '.tmp',
             '<%= yeoman.app %>'
           ],
-			 middleware: function (connect, options) {
-				if (!Array.isArray(options.base)) {
-						options.base = [options.base];
-				}
+          middleware: function (connect, options) {
+            if (!Array.isArray(options.base)) {
+                  options.base = [options.base];
+            }
 
-				// Setup the proxy
-				var middlewares = [proxySnippet];
+            // Setup the proxy
+            var middlewares = [proxySnippet];
 
-				// Serve static files.
-				options.base.forEach(function(base) {
-						middlewares.push(connect.static(base));
-				});
+            // Serve static files.
+            options.base.forEach(function(base) {
+                  middlewares.push(connect.static(base));
+            });
 
-				// Make directory browse-able.
-				var directory = options.directory || options.base[options.base.length - 1];
-				middlewares.push(connect.directory(directory));
+            // Make directory browse-able.
+            var directory = options.directory || options.base[options.base.length - 1];
+            middlewares.push(connect.directory(directory));
 
-				return middlewares;
-			 }
+            return middlewares;
+          }
         }
       },
       test: {
@@ -112,15 +111,15 @@ module.exports = function (grunt) {
           base: '<%= yeoman.dist %>'
         }
       },
-		proxies: [
-			{
-				context: '/trails',
-				host: 'localhost',
-				port: 3000,
-				https: false,
-				changeOrigin: false
-			}
-		]
+      proxies: [
+         {
+            context: '/trails',
+            host: 'localhost',
+            port: 3000,
+            https: false,
+            changeOrigin: false
+         }
+      ]
     },
     clean: {
       dist: {
@@ -216,8 +215,14 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      //js: '<%= yeoman.dist %>/scripts/{,*/}*.js',
       options: {
-        assetsDirs: ['<%= yeoman.dist %>']
+        assetsDirs: ['<%= yeoman.dist %>'],
+        /*patterns: {
+            js: [
+                [/bootstrap/gm, 'Update the JS to reference our revved images']
+            ]
+        }*/
       }
     },
     imagemin: {
@@ -347,13 +352,25 @@ module.exports = function (grunt) {
       }
     },
     uglify: {
-      dist: {
+      dynamic_mappings: {
+         files: [
+         {
+            expand: true,     // Enable dynamic expansion.
+            cwd: 'app/scripts/',      // Src matches are relative to this path.
+            src: ['**/*.js'], // Actual pattern(s) to match.
+            dest: '<%= yeoman.dist %>/scripts/',   // Destination path prefix.
+            ext: '.js',   // Dest filepaths will have this extension.
+         },
+         ],
+       }
+      /*dist: {
         files: {
-          '<%= yeoman.dist %>/scripts/scripts.js': [
+          '<%= yeoman.dist %>/scripts/*.js': [
             '<%= yeoman.dist %>/scripts/scripts.js'
           ]
         }
       }
+      */
     }
   });
 
@@ -376,8 +393,7 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'autoprefixer',
-    'connect:test',
-    'karma'
+    'connect:test'//,'karma'
   ]);
 
   grunt.registerTask('build', [
@@ -386,7 +402,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    'ngmin',
+    //'ngmin',
     'copy:dist',
     'cdnify',
     'cssmin',
