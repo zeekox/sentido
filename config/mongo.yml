@@ -13,6 +13,7 @@ test:
 # set these environment variables on your prod server
 production:
   <<: *defaults
+  uri: <%= ENV['MONGOHQ_URL'] %>
   database: sentido
-  username: <%= ENV['MONGO_USERNAME'] %>
-  password: <%= ENV['MONGO_PASSWORD'] %>
+  #username: <%= ENV['MONGO_USERNAME'] %>
+  #password: <%= ENV['MONGO_PASSWORD'] %>
