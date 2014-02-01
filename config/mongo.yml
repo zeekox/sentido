@@ -4,15 +4,15 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: sentido_development
+  database: sentido-dev
 
 test:
   <<: *defaults
-  database: sentido_test
+  database: sentido-test
 
 # set these environment variables on your prod server
 production:
   uri: <%= ENV['MONGOHQ_URL'] %>
-  database: sentido
+  database: sentido-prod
   #username: <%= ENV['MONGO_USERNAME'] %>
   #password: <%= ENV['MONGO_PASSWORD'] %>
