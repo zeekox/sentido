@@ -45,4 +45,4 @@ end
 
 # Heroku logging
 gem 'rails_12factor', group: :production
-#ruby '2.0.0'
+ruby '1.9.3'
