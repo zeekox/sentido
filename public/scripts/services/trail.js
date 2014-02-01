@@ -1,0 +1,1 @@
+define(["./module"],function(a){"use strict";a.factory("trail",["$resource",function(a){return a("/trails/around/:sw_lon/:sw_lat/:ne_lon/:ne_lat.js",{sw_lon:"@sw_lon",sw_lat:"@sw_lat",ne_lon:"@ne_lon",ne_lat:"@ne_lat"})}])});

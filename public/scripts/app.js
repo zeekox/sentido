@@ -1,0 +1,1 @@
+define(["angular","ngResource","./controllers/index","./directives/index","./services/index"],function(a){"use strict";return a.module("app",["ngRoute","ngResource","app.controllers","app.directives","app.services"])});

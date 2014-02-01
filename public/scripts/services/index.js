@@ -1,0 +1,1 @@
+define(["./geolocation","./trail"],function(){});

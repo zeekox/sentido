@@ -1,0 +1,1 @@
+define([],function(){"use strict";return{getPosition:function(a,b){var c=b.defer();if(navigator.geolocation){var d=function(a){c.reject(a.message)};navigator.geolocation.getCurrentPosition(function(b){a.$apply(function(){c.resolve(b.coords)})},d,{maximumAge:6e4,timeout:15e3,enableHighAccuracy:!0})}else c.reject("No position!");return c.promise}}});
