@@ -42,3 +42,7 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+# Heroku logging
+gem 'rails_12factor', group: :production
+#ruby '2.0.0'
