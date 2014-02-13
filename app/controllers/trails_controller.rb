@@ -1,4 +1,7 @@
+include SessionsHelper
+
 class TrailsController < ApplicationController
+
   def index
 
     @trails = Trail.all

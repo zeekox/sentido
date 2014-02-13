@@ -1,10 +1,16 @@
 Sentido::Application.routes.draw do
-  get "trails/index"
 
+  get "auth/user"
+  get "auth/login"
+
+  get "trails/index"
+  resource :session, only: [:new, :create, :destroy]
+  
   get "trails/show"
   resources :trails
 
   match '/trails/around/:sw_lon/:sw_lat/:ne_lon/:ne_lat' => 'trails#around', :constraints => {:sw_lon => /\-*\d+.\d+/ , :sw_lat => /\-*\d+.\d+/, :ne_lon => /\-*\d+.\d+/ , :ne_lat => /\-*\d+.\d+/}
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

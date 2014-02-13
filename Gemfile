@@ -46,3 +46,5 @@ end
 # Heroku logging
 gem 'rails_12factor', group: :production
 ruby '1.9.3'
+gem 'ruby-openid'
+gem 'open_id_authentication'
