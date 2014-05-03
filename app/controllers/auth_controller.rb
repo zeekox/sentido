@@ -12,4 +12,16 @@ class AuthController < ApplicationController
 	def login
 		SessionsController.create
 	end
+
+  def sign_in(user)
+    cookies.permanent[:remember_token] = user.remember_token
+    self.current_user = user
+    redirect_to dashboard_url
+  end
+
+  def logout
+    SessionsHelper.current_user= nil
+    cookies.delete(:remember_token)
+    render :json => { :status => 'ok' }
+  end
 end

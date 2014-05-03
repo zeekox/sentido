@@ -2,7 +2,8 @@ Sentido::Application.routes.draw do
 
   get "auth/user"
   get "auth/login"
-
+  get "auth/logout" 
+  
   get "trails/index"
   resource :session, only: [:new, :create, :destroy]
   

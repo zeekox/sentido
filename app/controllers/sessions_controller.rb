@@ -1,3 +1,5 @@
+require 'openid'
+
 class SessionsController < ApplicationController
   def new
     # spits out a login form to start session
@@ -11,7 +13,7 @@ class SessionsController < ApplicationController
 			  unless user = User.find_by_identity_url(identity_url)
 				  user = User.create(identity_url: identity_url)
 			  end
-			  sign_in user
+			  AuthController.sign_in user
 		  else
 			  render 'new'
 		  end
@@ -19,7 +21,7 @@ class SessionsController < ApplicationController
   end
  
   def destroy
-  	  logout
+  	  AuthController.logout
   	  redirect_to root_url
   end
 end
