@@ -8,7 +8,7 @@ development:
 
 test:
   <<: *defaults
-  host: 192.168.1.101
+  host: 192.168.1.112
   database: sentido-development
 
 # set these environment variables on your prod server
