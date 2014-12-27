@@ -4,7 +4,7 @@ class UserController < ApplicationController
     if current_user.nil?
       info = {:login_url => "/auth/google_oauth2"}
     else
-      info = {:name => current_user.name, :logout_url => "/signout"}
+      info = {:name => current_user.name, :email => current_user.email, :logout_url => "/signout"}
     end
     respond_with info
   end

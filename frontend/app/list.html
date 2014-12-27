@@ -1,5 +1,6 @@
 <div ng-controller="UserCtrl">
-  {{user}}
+  <div ngShow="user.login_url">{{user.email}}</div>
+  <a href="{{user.login_url ? user.login_url : user.logout_url}}">{{user.login_url ? "login" : "logout"}}</a>
 </div>
 <ul class="trails nav nav-list">
   <li class="nav-header">Sentiers {{displayed_trails}}/{{cached_trails}}</li>

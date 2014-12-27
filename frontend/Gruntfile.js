@@ -125,7 +125,22 @@ module.exports = function (grunt) {
 				port: 3000,
 				https: false,
 				changeOrigin: false
+			},
+			{
+				context: '/auth',
+				host: 'localhost',
+				port: 3000,
+				https: false,
+				changeOrigin: false
+			},
+			{
+				context: '/signout',
+				host: 'localhost',
+				port: 3000,
+				https: false,
+				changeOrigin: false
 			}
+
 		]
 	 },
 	 clean: {
