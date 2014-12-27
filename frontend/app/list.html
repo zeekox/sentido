@@ -1,8 +1,6 @@
-<!---
-  <div class="row-fluid">
-    <input type="text" ng-model="search" class="search-query" placeholder="Search">
-  </div>
-  -->
+<div ng-controller="UserCtrl">
+  {{user}}
+</div>
 <ul class="trails nav nav-list">
   <li class="nav-header">Sentiers {{displayed_trails}}/{{cached_trails}}</li>
   <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('selecttrail', trail.id)" ng-class="{active: trail.id==selectedTrail}">

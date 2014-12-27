@@ -1,4 +1,5 @@
 define([
      './geolocation',
-     './trail'
+     './trail',
+     './user'
 ], function () {});
