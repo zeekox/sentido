@@ -1,0 +1,1 @@
+define(["./module"],function(a){"use strict";a.factory("user",["$resource",function(a){return a("/user")}])});

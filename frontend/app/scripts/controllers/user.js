@@ -1,8 +1,7 @@
 define([
-		'./module',
-		'services/user'
+		'./module'
 	],
-	function (controllers, user) {
+	function (controllers) {
 		'use strict';
 		controllers.controller('UserCtrl', ['$scope', 'user', function ($scope, User) {
 				if(User){

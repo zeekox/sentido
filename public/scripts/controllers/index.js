@@ -1,1 +1,1 @@
-define(["./list"],function(){});
+define(["./list","./user"],function(){});
