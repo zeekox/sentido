@@ -1,4 +1,6 @@
 Sentido::Application.routes.draw do
+  resources :user, :defaults => { :format => 'json' }
+
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
@@ -9,7 +11,6 @@ Sentido::Application.routes.draw do
   root to: "home#show"
 
   resources :trails
-  get "trails/index"
 
   match '/trails/around/:sw_lon/:sw_lat/:ne_lon/:ne_lat' => 'trails#around', :constraints => {:sw_lon => /\-*\d+.\d+/ , :sw_lat => /\-*\d+.\d+/, :ne_lon => /\-*\d+.\d+/ , :ne_lat => /\-*\d+.\d+/}
 end
