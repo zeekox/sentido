@@ -1,5 +1,7 @@
 class User
   include MongoMapper::Document
+  extend Enumerize
+
   def self.from_omniauth(auth)
     find_or_create_by_provider_and_uid(auth.provider, auth.uid).tap do |user|
       user.name = auth.info.name
@@ -16,4 +18,6 @@ class User
   key :provider, String
   key :oauth_token, String
   key :oauth_expires_at, Time
+  key :role
+  enumerize :role, in: [:human, :jedi], default: :human
 end
