@@ -20,4 +20,8 @@ class User
   key :oauth_expires_at, Time
   key :role
   enumerize :role, in: [:human, :jedi], default: :human
+
+  def jedi?
+    role.jedi?
+  end
 end

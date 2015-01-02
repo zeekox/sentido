@@ -92,6 +92,8 @@ GEM
     plucky (0.5.2)
       mongo (~> 1.5)
     polyglot (0.3.3)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -164,6 +166,7 @@ DEPENDENCIES
   mongo_mapper
   nokogiri
   omniauth-google-oauth2 (~> 0.2.1)
+  pundit
   rails (= 3.2.13)
   rails_12factor
   rspec-rails (~> 2.0)
