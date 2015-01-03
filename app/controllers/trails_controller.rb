@@ -1,17 +1,7 @@
 class TrailsController < ApplicationController
-  def index
-
-    @trails = Trail.all
-
-    respond_to do |format|
-      format.html 
-      format.xml {render :xml => @trails}
-      format.js  {render :json => @trails}
-    end
-  end
 
   def around
-
+    authorize Trail.new, :show?
     @sw_lon = Float(params[:sw_lon])
     @sw_lat =  Float(params[:sw_lat])
     @ne_lon = Float(params[:ne_lon])

@@ -118,22 +118,44 @@ module.exports = function (grunt) {
             port: 3000,
             https: false,
             changeOrigin: false
-         }
-      ]
-    },
-    clean: {
-      dist: {
-		  options: {force: true},
-        files: [{
-          dot: true,
-          src: [
-            '.tmp',
-            '<%= yeoman.dist %>/*',
-            '!<%= yeoman.dist %>/.git*'
-          ]
-        }]
-      },
-      server: '.tmp'
+         },
+			{
+				context: '/user',
+				host: 'localhost',
+				port: 3000,
+				https: false,
+				changeOrigin: false
+			},
+			{
+				context: '/auth',
+				host: 'localhost',
+				port: 3000,
+				https: false,
+				changeOrigin: false
+			},
+			{
+				context: '/signout',
+				host: 'localhost',
+				port: 3000,
+				https: false,
+				changeOrigin: false
+			}
+
+		]
+	 },
+	 clean: {
+		 dist: {
+			 options: {force: true},
+			 files: [{
+					 dot: true,
+					 src: [
+						 '.tmp',
+						 '<%= yeoman.dist %>/*',
+													'!<%= yeoman.dist %>/.git*'
+			 ]
+			 }]
+		 },
+		 server: '.tmp'
     },
     jshint: {
       options: {
@@ -403,7 +425,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    //'ngmin',
+    'ngmin',
     'copy:dist',
     'cdnify',
     'cssmin',

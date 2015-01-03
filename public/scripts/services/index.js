@@ -1,1 +1,1 @@
-define(["./geolocation","./trail"],function(){});
+define(["./geolocation","./trail","./user"],function(){});

@@ -3,70 +3,25 @@ Leaflet Changelog
 
 (all changes without author notice are by [@mourner](https://github.com/mourner))
 
-## 0.8-dev (master)
+## 0.7.3-dev (stable branch)
 
-An in-progress version being developed on the `master` branch.
+* Added proper **bower** and **component** support (by [@calvinmetcalf](https://github.com/calvinmetcalf)). [#2561](https://github.com/Leaflet/Leaflet/pull/2561) [#1903](https://github.com/Leaflet/Leaflet/issues/1903)
+* Fixed a bug where dragging the map outside the window caused an error on FF. [#2610](https://github.com/Leaflet/Leaflet/issues/2610)
+* Fixed a bug where some taps on Android where not working, often falsely perceived as drags (by [@axefrog](https://github.com/axefrog)). [#2503](https://github.com/Leaflet/Leaflet/pull/2503)
+* Fixed a bug where tapping too quickly on Android ignored most taps. [#2303](https://github.com/Leaflet/Leaflet/issues/2303)
+* Fixed a bug where calling `setView` (or similar methods) several times in succession could freeze the map. [#2521](https://github.com/Leaflet/Leaflet/issues/2521) [#2236](https://github.com/Leaflet/Leaflet/issues/2236) [#2485](https://github.com/Leaflet/Leaflet/issues/2485)
+* Fixed a bug where `Control.Layers` wasn't properly removed (by [@jack-kerouac](https://github.com/jack-kerouac)). [#2569](https://github.com/Leaflet/Leaflet/pull/2569)
+* Fixed a bug that caused `TileLayer` `load` event not to fire properly. [#2510](https://github.com/Leaflet/Leaflet/issues/2510)
+* Fixed Canvas-based paths not triggering `remove` event when removed (by @adimitrov). [#2486](https://github.com/Leaflet/Leaflet/pull/2486)
+* Fixed a bug where you could end up with fractional zoom after pinch-zooming in some cases (by [@danzel](https://github.com/danzel). [#2400](https://github.com/Leaflet/Leaflet/pull/2400) [#1943](https://github.com/Leaflet/Leaflet/issues/1934)
 
-This version contains a lot of beneficial but potentially breaking changes (especially if you're a plugin author), so please read through the changes carefully before upgrading.
+## 0.7.2 (January 17, 2013)
 
-### Layers refactoring
-
-All Leaflet layers (including markers, popups, tile and vector layers) have been refactored to have a common parent, `Layer` class, that shares the basic logic of adding and removing. The leads to the following changes (documented in PR [#2266](https://github.com/Leaflet/Leaflet/pull/2266)):
-
-* Added `Layer` class which all layers added to a map should inherit from.
-* Added `add` and `remove` events to all layers.
-* Added `pane` option to all layers that can be changed (e.g. you can set `pane: 'overlayPane'` to a tile layer).
-* Added `shadowPane` option to markers as well.
-* Added `getEvents` method to all layers that returns an `{event: listener, ...}` hash; layers now manage its listeners automatically without having to do this in `onAdd`/`onRemove`.
-* Improved performance of adding/removing layers with layers control present (instead of listening to any layer add/remove, the control only listens to layers added in configuration).
-* Fixed `FeatureGroup` `getBounds` to work correctly when containing circle markers.
-* Removed `Map` `tilelayersload` event.
-* Removed `Popup` `open` and `close` events in favor of `add` and `remove` for consistency.
-* Moved all layer-related logic in `Map.js` to `Layer.js`.
-
-### TileLayer & Projections refactoring
-
-TileLayer code and everything projections-related has undergone a major refactoring, documented in PR [#2247](https://github.com/Leaflet/Leaflet/pull/2247). It includes the following changes (in addition to much cleaner and simpler code):
-
-#### TileLayer-related changes
-
-These changes make implementing custom grid-like layers for Leaflet much easier.
-
-* Moved most of the `TileLayer` logic into the new `GridLayer` class (which `TileLayer` now inherits, extending it with logic specific to tile servers).
-* Removed `TileLayer.Canvas` in favor of the much more flexible and powerful `GridLayer`.
-* Improved tile wrapping and bounding logic in `TileLayer` to work transparently and completely depent on the CRS used; removed the need for `TileLayer` hacks when using custom projections.
-* Removed `url` property in `tileload` and `tileloadstart` events (get it through `tile.src`).
-
-#### Projections-related changes
-
-These changes were targeted at removing any hardcoded projection-specific logic accross Leaflet classes, making it transparent and driven by the chosen CRS. They make using Leaflet with custom projections (including flat maps) much easier, and remove the need for ugly hacks in the [Proj4Leaflet](https://github.com/kartena/Proj4Leaflet) plugin.
-
-* Added `Projection` `bounds` property that defines bounds for different projections (`Mercator`, etc.) in projected coordinates (by [@perliedman](https://github.com/perliedman)).
-* Added `CRS` `wrapLat` and `wrapLng` properties which define whether the world wraps on a given axis and in what range. Set as `[-180, 180]` for `EPSG:3857`, `EPSG:4326`, `EPSG:3395` by default.
-* Removed `LatLng` `wrap` method; added `CRS` and `Map` `wrapLatLng` instead (so that wrapping depends on the chosen CRS).
-* Added `CRS` `infinite` property that disables boundaries (the world can go on infinitely in any direction), default for `CRS.Simple`.
-* Added `CRS` `getProjectedBounds` and `Map` `getPixelWorldBounds` methods that returns world bounds in projected coordinates depending on zoom (derived from `Projection` `bounds`) (by [@perliedman](https://github.com/perliedman)).
-* Added `CRS` `unproject` method that converts coordinates in CRS-dependent units into `LatLng` coordinates (by [@sowelie](https://github.com/sowelie)).
-* Fixed `EPSG:4326` to have correct tile pyramid (2x1 tiles at root).
-* Fixed `Projection.SphericalMercator` to project to meter units (by [@calvinmetcalf](https://github.com/calvinmetcalf)).
-* Fixed `Map` `worldCopyJump` option to work for other projections.
-
-### Other improvements
-
-* Added `Point` `ceil` method (by [@perliedman](https://github.com/perliedman)).
-* Added `Util.wrapNum` method for wrapping a number to lie in a certain range.
-* Improved `L.bind` to use native `Function` `bind` on modern browsers and prepend real arguments to bound ones.
-* Added `DomUtil` `setClass` and `getClass` methods.
-* Removed `LatLng` `RAD_TO_DEG`, `DEG_TO_RAD` and `MAX_MARGIN` constants.
-* Added `LatLng` `equals` second argument `maxMargin`.
-* Improved performance of layer objects construction.
-* Added popup fade out animation.
-* Improved the build system (`jake build`) to report gzipped library size.
-
+* Fixed a bug that appeared with **Chrome 32 update** that made all **mouse events shifted on scrolled pages**. [#2352](https://github.com/Leaflet/Leaflet/issues/2352)
+* Fixed a bug that could break tile loading when using non-standard tile sizes. [#2288](https://github.com/Leaflet/Leaflet/issues/2288)
+* Fixed a bug where `maxNativeZoom` option didn't work with TMS tile layers (by [@perliedman](https://github.com/perliedman)). [#2321](https://github.com/Leaflet/Leaflet/issues/2321) [#2314](https://github.com/Leaflet/Leaflet/issues/2314)
 
 ## 0.7.1 (December 6, 2013)
-
-A follow-up bugfix release for the recent stable version.
 
 * Fixed a bug where pinch-zooming quickly could occasionally leave the map at a fractional zoom thus breaking tile loading (by [@danzel](https://github.com/danzel)). [#2269](https://github.com/Leaflet/Leaflet/pull/2269) [#2255](https://github.com/Leaflet/Leaflet/issues/2255) [#1934](https://github.com/Leaflet/Leaflet/issues/1934)
 * Fixed tile flickering issues on some old Android 2/3 devices by disabling buggy hardware accelerated CSS there (by [@danzel](https://github.com/danzel)). [#2216](https://github.com/Leaflet/Leaflet/pull/2216) [#2198](https://github.com/Leaflet/Leaflet/issues/2198)

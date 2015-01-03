@@ -3,13 +3,13 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem "mongo_mapper"
 gem 'bson_ext'
+gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'enumerize'
+gem "pundit"
 
 # Needs
 # sudo apt-get install libxslt-dev libxml2-dev
 gem 'nokogiri'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,20 +28,6 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
 end
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
 
 # Heroku logging
 gem 'rails_12factor', group: :production

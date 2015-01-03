@@ -1,3 +1,4 @@
 define([
-     './list'
+		'./list',
+		'./user'
 ], function () {});
