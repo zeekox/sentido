@@ -8,10 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" href="styles/d43a7003.main.css"/>
+    <link rel="stylesheet" href="styles/4f8a5f0c.main.css"/>
 </head>
   <body>
     <!--[if lt IE 7]>
@@ -22,24 +21,17 @@
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
+   <div ng-view="" class="content"></div>
 
-    <!-- Add your site or application content here -->
-      <div class="container">
-        <h1>Sentido!</h1>
-
-        <div ng-view=""></div>
-      </div>
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID
-     <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-    -->
+   <div ng-controller="UserCtrl" class="login">
+     <a ng-hide="user.logged_in" href="{{user.login_url}}" class="small button">login</a>
+     <div ng-show="user.logged_in">
+       <a data-dropdown="user-drop" aria-controls="user-drop" aria-expanded="false" class="small button dropdown">{{user.email}}</a>
+       <ul id="user-drop" class="f-dropdown" data-dropdown-content="" aria-hidden="true" tabindex="-1">
+         <li><a href="{{user.logout_url}}">logout</a></li>
+       </ul>
+     </div>
+   </div>
 
     <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
 

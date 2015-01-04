@@ -1,1 +1,1 @@
-define(["require","angular","ngRoute","app","routes"],function(a,b){"use strict";a(["domReady!"],function(a){b.bootstrap(a,["app"])})});
+define(["require","angular","jquery","foundation","ngRoute","app","routes","fastclick"],function(a,b,c){"use strict";a(["domReady!"],function(a){b.bootstrap(a,["app"]),c(a).foundation(),c(".login").show()})});
