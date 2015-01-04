@@ -24,8 +24,17 @@
       <script src="bower_components/es5-shim/es5-shim.js"></script>
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
+   <div ng-view class="content"></div>
 
-    <div ng-view class="content"></div>
+   <div ng-controller="UserCtrl" class="login">
+     <a ng-hide="user.logged_in" href="{{user.login_url}}" class="small button">login</a>
+     <div ng-show="user.logged_in">
+       <a data-dropdown="user-drop" aria-controls="user-drop" aria-expanded="false" class="small button dropdown">{{user.email}}</a>
+       <ul id="user-drop" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
+         <li><a href="{{user.logout_url}}">logout</a></li>
+       </ul>
+     </div>
+   </div>
 
     <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
 

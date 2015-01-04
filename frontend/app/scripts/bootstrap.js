@@ -1,13 +1,17 @@
 define([
       'require',
       'angular',
+      'jquery',
+      'foundation',
       'ngRoute',
       'app',
-      'routes'
-  ], function (require, ng) {
+      'routes',
+      'fastclick'
+], function (require, ng, $, foundation) {
      'use strict';
- 
      require(['domReady!'], function (document) {
          ng.bootstrap(document, ['app']);
+         $(document).foundation();
+         $('.login').show();
      });
  });

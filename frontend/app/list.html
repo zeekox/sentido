@@ -1,11 +1,9 @@
 <div class="map"></div>
-<div ng-controller="UserCtrl" class="login">
-  <div ngShow="user.login_url">{{user.email}}</div>
-  <a href="{{user.login_url ? user.login_url : user.logout_url}}">{{user.login_url ? "login" : "logout"}}</a>
-</div>
+
+
 <!--<ul class="trails nav nav-list">
   <li class="nav-header">Sentiers {{displayed_trails}}/{{cached_trails}}</li>
-  <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('selecttrail', trail.id)" ng-class="{active: trail.id==selectedTrail}">
-    <a>{{trail.name}} {{trail.length}}</a>
-  </li>
-</ul>--> 
+    <li ng-repeat="trail in trails | filter:search | orderBy:'name'" ng-click="$emit('selecttrail', trail.id)" ng-class="{active: trail.id==selectedTrail}">
+      <a>{{trail.name}} {{trail.length}}</a>
+      </li>
+    </ul>--> 
