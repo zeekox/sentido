@@ -1,4 +1,5 @@
-<div ng-controller="UserCtrl">
+<div class="map"></div>
+<div ng-controller="UserCtrl" class="login">
   <div ngShow="user.login_url">{{user.email}}</div>
   <a href="{{user.login_url ? user.login_url : user.logout_url}}">{{user.login_url ? "login" : "logout"}}</a>
 </div>
@@ -8,4 +9,3 @@
     <a>{{trail.name}} {{trail.length}}</a>
   </li>
 </ul> 
-<div class="map"></div>
