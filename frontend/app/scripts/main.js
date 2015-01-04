@@ -2,13 +2,15 @@
 
 require.config({
 		paths: {
-			jquery: '../bower_components/jquery/jquery.min',
+			jquery: '../bower_components/jquery/dist/jquery.min',
 			leaflet: '../bower_components/leaflet/dist/leaflet',
 			underscore: '../bower_components/underscore/underscore',
 			angular: '../bower_components/angular/angular',
 			ngRoute: '../bower_components/angular-route/angular-route',
 			ngResource: '../bower_components/angular-resource/angular-resource',
-			domReady: '../bower_components/requirejs-domready/domReady'
+			domReady: '../bower_components/requirejs-domready/domReady',
+			fastclick: '../bower_components/fastclick/lib/fastclick',
+			foundation: '../bower_components/foundation/js/foundation.min'
 		},
 		shim: {
 			'leaflet': {
@@ -31,14 +33,3 @@ require.config({
 		// kick start application
 		deps: ['./bootstrap']
 });
-/*
-require([ 'directives/map', 'app', 'angular'],
-	function (dir, app, angular) {
-
-
-	angular.element(document).ready(function() {
-		angular.bootstrap(document, [app.mainModule]);
-	});
-
-});
-*/
