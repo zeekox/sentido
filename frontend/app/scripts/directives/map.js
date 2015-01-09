@@ -19,7 +19,7 @@ define([
 						transclude: true,
 						link: function postLink(scope, element) {
 							var mapElement = element[0];
-							var map = new L.Map(mapElement, {attributionControl: true});
+							var map = new L.Map(mapElement, {attributionControl: true, zoomControl: false});
 
 							L.control.scale({imperial: false}).addTo(map);
 
