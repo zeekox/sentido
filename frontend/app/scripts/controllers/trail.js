@@ -18,11 +18,6 @@ define([
 					});
 				}
 
-				$scope.$on('selecttrail', function(e, id) {
-					$scope.selectedTrail = id;
-					$scope.$apply();
-				});
-
 				$scope.$on('newBounds', function(e, bounds) {
 					if(bounds){
 						var sw = bounds.getSouthWest();

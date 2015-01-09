@@ -44,9 +44,11 @@ define([
 
 										if(!(trail.id in cachedLayers)) {
 											var geoJSON = L.geoJson(trail.path, {color: 'blue'});
+											delete trail.path;
 
 											geoJSON.on('click', function(){
-												scope.$emit('selecttrail', trail);
+												scope.selectedTrail = trail;
+												scope.$apply();
 											});
 
 											//L.marker(getStart(trail), {icon: startIcon }).addTo(map);
