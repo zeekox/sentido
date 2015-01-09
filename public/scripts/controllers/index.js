@@ -1,1 +1,1 @@
-define(["./list","./user"],function(){});
+define(["./trail","./user"],function(){});

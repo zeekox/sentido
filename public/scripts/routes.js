@@ -1,1 +1,1 @@
-define(["./app"],function(a){"use strict";return a.config(["$routeProvider",function(a){a.when("/",{controller:"ListCtrl",templateUrl:"list.html"}),a.otherwise({redirectTo:"/"})}])});
+define(["./app"],function(a){"use strict";return a.config(["$routeProvider",function(a){a.otherwise({redirectTo:"/"})}])});
