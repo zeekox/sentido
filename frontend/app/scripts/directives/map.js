@@ -25,11 +25,6 @@ define([
 
 							var landscapeTile = 'http://{s}.tile3.opencyclemap.org/landscape/{z}/{x}/{y}.png';
 
-							//var cycleMapTile = 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
-
-							//var openstreetmap = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-
-
 							L.tileLayer(landscapeTile, {
 									attribution: '&copy; OpenStreetMap'
 							}).addTo(map);
@@ -51,8 +46,7 @@ define([
 											var geoJSON = L.geoJson(trail.path, {color: 'blue'});
 
 											geoJSON.on('click', function(){
-												scope.selectedTrail = trail.id;
-												scope.$apply();
+												scope.$emit('selecttrail', trail);
 											});
 
 											//L.marker(getStart(trail), {icon: startIcon }).addTo(map);
@@ -72,52 +66,53 @@ define([
 							});
 
 							/*function getStart (trail) {
-								var lonLat = trail.path.coordinates[0];
-								return [lonLat[1], lonLat[0]];
+							 var lonLat = trail.path.coordinates[0];
+							 return [lonLat[1], lonLat[0]];
+						}
+
+						function getEnd (trail) {
+						var lonLat = trail.path.coordinates[trail.path.coordinates.length - 1];
+						return [lonLat[1], lonLat[0]];
+						}*/
+
+						scope.$watch('selectedTrail', function(selectedTrail, lastSelected) {
+							if(lastSelected && lastSelected.id) {
+								cachedLayers[lastSelected.id].layer.setStyle({color: 'blue'});
 							}
 
-							function getEnd (trail) {
-								var lonLat = trail.path.coordinates[trail.path.coordinates.length - 1];
-								return [lonLat[1], lonLat[0]];
-							}*/
+							if(selectedTrail && selectedTrail.id) {
+								var trailLayer = cachedLayers[selectedTrail.id];
+								var selectedLayer = trailLayer.layer;
+								if(selectedLayer){
+									selectedLayer.bringToFront();
+									selectedLayer.setStyle({color: 'red'});
 
-							scope.$watch('selectedTrail', function(selectedTrail, lastSelected) {
-								if(lastSelected) {
-									cachedLayers[lastSelected].layer.setStyle({color: 'blue'});
+									var bounds = selectedLayer.getBounds();
+									var zoom = map.getBoundsZoom(bounds);
+
+									map.setView(bounds.getCenter(), zoom-2);
 								}
+							}
 
-								if(selectedTrail) {
-									var selectedLayer = cachedLayers[selectedTrail].layer;
-									if(selectedLayer){
-										selectedLayer.bringToFront();
-										selectedLayer.setStyle({color: 'red'});
+						});
 
-										var bounds = selectedLayer.getBounds();
-										var zoom = map.getBoundsZoom(bounds);
+						scope.$watch('center', function(center) {
+							if (center === undefined){return;}
 
-										map.setView(bounds.getCenter(), zoom-2);
-									}
-								}
+							// Center of the map
+							center =  new L.LatLng(scope.center[1], scope.center[0]);
+							var zoom = scope.zoom || 13;
+							map.setView(center, zoom);
 
-							});
+						});
 
-							scope.$watch('center', function(center) {
-								if (center === undefined){return;}
-
-								// Center of the map
-								center =  new L.LatLng(scope.center[1], scope.center[0]);
-								var zoom = scope.zoom || 13;
-								map.setView(center, zoom);
-
-							});
-
-							map.on('move', function() {
-								scope.$emit('newBounds', map.getBounds());
-							});
+						map.on('move', function() {
+							scope.$emit('newBounds', map.getBounds());
+						});
 						}
 					};
 					return directiveDefinitionObject;
 				}
 		]);
 	}
-);
+	);
