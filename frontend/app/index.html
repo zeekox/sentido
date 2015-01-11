@@ -31,10 +31,14 @@
         </ul>
         <ul class="right" ng-controller="UserCtrl">
           <li ng-hide="user.logged_in" >
-            <a href="{{user.login_url}}">login</a>
+            <a href="{{user.login_url}}" title="login">
+              <i class="fi-unlock"></i>
+            </a>
           </li>
           <li ng-show="user.logged_in">
-            <a href="{{user.logout_url}}">logout</a></li>
+            <a href="{{user.logout_url}}" title="logout">
+              <i class="fi-torso"></i>
+            </a>
         </li>
       </ul>
     </section>

@@ -21,6 +21,9 @@ define([
 				$scope.trail_info = function(){
 					var trail = $scope.selectedTrail;
 					var info = '';
+					if(!trail){
+						return info;
+					}
 					if(trail.length){
 						info += trail.length + ', ';
 					}

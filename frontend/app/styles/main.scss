@@ -1,9 +1,11 @@
 $topbar-breakpoint: 1px;
 $topbar-media-query: "only screen and (min-width: 1px)";
+$fi-path: "../bower_components/foundation-icon-fonts";
 
 @import 
     "normalize",
-    "foundation";
+    "foundation",
+    "../../foundation-icon-fonts/_foundation-icons";
 
 body {
   padding: 0;
