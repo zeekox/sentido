@@ -23,7 +23,7 @@
       <section class="top-bar-section">
         <ul class="left" ng-show="selectedTrail">
           <li>
-            <a href="#">{{selectedTrail.name}}, {{trail_info()}}</a>
+            <a href="#">{{selectedTrail.name}}</a>
           </li>
         </ul>
         <ul class="right" ng-controller="UserCtrl">
@@ -36,19 +36,15 @@
             <a href="{{user.logout_url}}" title="logout">
               <i class="fi-torso"></i>
             </a>
-        </li>
-      </ul>
-    </section>
-  </nav>
-  
-    <!--
-   <div class="top-bar trail_info">
+          </li>
+        </ul>
+      </section>
+    </nav>
+    <div class="top-bar trail_info" ng-show="selectedTrail">
       <span>
         {{trail_info()}}
       </span>
     </div>
-    -->
-
   </div>
   <div class="map"></div>
 
