@@ -37,7 +37,7 @@ define([
 						info += trail.date;
 					}
 					return info;
-				}
+				};
 
 				$scope.$on('newBounds', function(e, bounds) {
 					if(bounds){
