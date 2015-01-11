@@ -5,7 +5,7 @@ define([
 	function (controllers, geolocation) {
 		'use strict';
 		controllers.controller('TrailCtrl', ['$scope','$q', 'trail', function ($scope, q, Trail) {
-				// ensure center set
+				
 				$scope.center = [7.353011682782,47.283851153176];
 				if(q){
 					var promise = geolocation.getPosition($scope, q);
@@ -16,6 +16,24 @@ define([
 					function(reason) {
 						$scope.position = reason;
 					});
+				}
+
+				$scope.trail_info = function(){
+					var trail = $scope.selectedTrail;
+					var info = '';
+					if(trail.length){
+						info += trail.length + ', ';
+					}
+					if(trail.diff){
+						info += trail.diff + ', ';
+					}
+					if(trail.state){
+						info += 'état: ' + trail.state + ', ';
+					}
+					if(trail.date){
+						info += trail.date;
+					}
+					return info;
 				}
 
 				$scope.$on('newBounds', function(e, bounds) {

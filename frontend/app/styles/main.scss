@@ -1,6 +1,9 @@
+$topbar-breakpoint: 1px;
+$topbar-media-query: "only screen and (min-width: 1px)";
+
 @import 
-    "normalize",  // import from bower_components/foundation
-    "foundation"; // import from bower_components/foundation
+    "normalize",
+    "foundation";
 
 body {
   padding: 0;
@@ -11,17 +14,13 @@ html, body, .map, .content {
   height: 100%;
 }
 
-.login {
-  position: absolute;
-  z-index: 1000;
-  top: 0;
-  right: 0;
-  margin: 10px 10px 0 0;
-  display: none;
-}
-
-ul.trails {
-  display: inline-block;
-  list-style-type: none;
-  width: 20%;
+$trail_info_height: emCalc(25px);
+.trail_info {
+  height: $trail_info_height;
+  line-height: $trail_info_height;
+  span {
+    margin: 0px emCalc(15px);
+    color: #ffffff;
+  }
+  font-size: emCalc(13px);
 }
