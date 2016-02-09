@@ -12,5 +12,5 @@ Sentido::Application.routes.draw do
 
   resources :trails
 
-  match '/trails/around/:sw_lon/:sw_lat/:ne_lon/:ne_lat' => 'trails#around', :constraints => {:sw_lon => /\-*\d+.\d+/ , :sw_lat => /\-*\d+.\d+/, :ne_lon => /\-*\d+.\d+/ , :ne_lat => /\-*\d+.\d+/}
+  get '/trails/around/:sw_lon/:sw_lat/:ne_lon/:ne_lat' => 'trails#around', :constraints => {:sw_lon => /\-*\d+.\d+/ , :sw_lat => /\-*\d+.\d+/, :ne_lon => /\-*\d+.\d+/ , :ne_lat => /\-*\d+.\d+/}
 end
