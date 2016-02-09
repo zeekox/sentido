@@ -7,3 +7,5 @@ sudo apt-get install --yes mongodb-org
 echo "filling the local db"
 rake db:seed
 
+#depending on ruby version and how you installed ruby for ruby-dev
+sudo apt-get install libxslt-dev libxml2-dev zlib1g-dev liblzma-dev ruby-dev
