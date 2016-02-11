@@ -6,6 +6,7 @@ gem 'bson_ext'
 gem "omniauth-google-oauth2", ">= 0.2.1"
 gem 'enumerize'
 gem "pundit"
+gem 'responders'
 
 # Needs
 # sudo apt-get install libxslt-dev libxml2-dev
