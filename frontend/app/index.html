@@ -26,7 +26,10 @@
       <section class="top-bar-section">
         <ul class="left" ng-show="selectedTrail">
           <li>
-            <a href="#">{{selectedTrail.name}}</a>
+            <a href="#" data-reveal-id="trail_edit" ng-click="edit_trail()">
+              {{selectedTrail.name}} <span class="fi-compass"> {{trail_info()}}</span>
+              <span class="fi-page-edit large"/>
+            </a>
           </li>
         </ul>
         <ul class="right" ng-controller="UserCtrl">
@@ -43,15 +46,37 @@
         </ul>
       </section>
     </nav>
-    <div class="top-bar trail_info" ng-show="selectedTrail">
-      <span>
-        {{trail_info()}}
-      </span>
-    </div>
   </div>
+  
   <div class="map"></div>
 
   <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+
+  <div id="trail_edit" class="reveal-modal" data-reveal aria-labelledby="Edit Trail" aria-hidden="true" role="dialog">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">Name</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" id="right-label" ng-model="updated_trail.name" placeholder="Name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">State</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="radio" name="trail_state" value="Good" id="state_good"><label for="trail_state">Good</label>
+          <input type="radio" name="trail_state" value="Bad" id="state_bad"><label for="trail_state">Bad</label>
+        </div>
+      </div>
+      <div class="row">
+        <button class="close-reveal-modal close-button right" ng-click="update_trail()">save</button>
+      </div>
+    </div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
 
 </body>
 </html>

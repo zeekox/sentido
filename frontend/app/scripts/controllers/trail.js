@@ -39,6 +39,14 @@ define([
 					return info;
 				};
 
+                $scope.edit_trail = function(){
+                    $scope.updated_trail = angular.copy($scope.selectedTrail);
+                };
+
+                $scope.update_trail = function(){
+                    angular.copy($scope.updated_trail,$scope.selectedTrail);
+                };
+
 				$scope.$on('newBounds', function(e, bounds) {
 					if(bounds){
 						var sw = bounds.getSouthWest();
